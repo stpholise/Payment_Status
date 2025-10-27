@@ -1,6 +1,5 @@
 import clsx from "clsx";
-const PaymentStatus = ({stage = 3 } : { stage?: number}) => {
- 
+const PaymentStatus = ({ stage = 3 }: { stage?: number }) => {
   const progress = (stage / 4) * 93;
   return (
     <div className="bg-gray-50 w-full min-h-screen  h-full container flex flex-col max-w-[420px] mx-auto">
@@ -36,7 +35,7 @@ const PaymentStatus = ({stage = 3 } : { stage?: number}) => {
                 <div className="px-4 py-2">
                   {persons.map((person, index) => (
                     <div
-                      className="grid  grid-cols-[15%_60%_25%] g items-center justify-between  border-y border-gray-100"
+                      className="grid  grid-cols-[20%_80%] g items-center justify-between  border-y border-gray-100"
                       key={person.name + index}
                     >
                       <div className="w-full flex items-center justify-center px-2 py-1">
@@ -46,28 +45,29 @@ const PaymentStatus = ({stage = 3 } : { stage?: number}) => {
                           className="w-8 h-8"
                         />
                       </div>
-                      <div className="border-l border-gray-100 h-full flex items-center px-2 py-1">
+                      <div className="border-l border-gray-100 h-full flex justify-between items-center px-2 py-1">
                         <p className="">{person.name}</p>
+
+                        {person.paid ? (
+                          <div className=" flex items-center gap-1 justify-end ">
+                            <button className="flex items-center gap-1 py-1 px-2 text-xs font-medium text-gray-600 rounded-lg border-gray-200 border">
+                              <img src="paid.png" alt="" className="size-3" />
+                              <span>Paid</span>
+                            </button>
+                          </div>
+                        ) : (
+                          <div className=" flex items-center gap-1 justify-end">
+                            <button className="flex items-center gap-1 py-1 px-2 text-xs font-medium text-gray-600 rounded-lg border-gray-200 border">
+                              <img
+                                src="/orange_clock.png"
+                                alt=""
+                                className="size-3"
+                              />
+                              <span className="">unpaid</span>
+                            </button>
+                          </div>
+                        )}
                       </div>
-                      {person.paid ? (
-                        <div className=" flex items-center gap-1 justify-end ">
-                          <button className="flex items-center gap-1 py-1 px-2 text-xs font-medium text-gray-600 rounded-lg border-gray-200 border">
-                            <img src="paid.png" alt="" className="size-3" />
-                            <span>Paid</span>
-                          </button>
-                        </div>
-                      ) : (
-                        <div className=" flex items-center gap-1 justify-end">
-                          <button className="flex items-center gap-1 py-1 px-2 text-xs font-medium text-gray-600 rounded-lg border-gray-200 border">
-                            <img
-                              src="/orange_clock.png"
-                              alt=""
-                              className="size-3"
-                            />
-                            <span className="">unpaid</span>
-                          </button>
-                        </div>
-                      )}
                     </div>
                   ))}
                 </div>
